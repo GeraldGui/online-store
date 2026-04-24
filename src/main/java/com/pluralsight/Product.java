@@ -37,6 +37,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product: " + id + "\nname " + name + " \nprice " + price + "\n" ;
+        return "Product: " + id + "\nname: " + name + " \nprice: " + price + "\n" ;
     }
 }

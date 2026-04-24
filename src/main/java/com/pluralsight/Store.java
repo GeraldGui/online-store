@@ -104,15 +104,56 @@ public class Store {
                                        Scanner scanner) {
         // TODO: show each product (id, name, price),
         //       prompt for an id, find that product, add to cart
-        int i = 0;
+        int itemNumber = 0;
 
         // Start a loop to print out each object in inventory
         for (Product product : inventory) {
-            i++;
-            System.out.println("Item number: " + i + "\n----------------\n" + product);
+            itemNumber++;
+            System.out.println("Item number: " + itemNumber + "\n----------------\n" + product);
         }
 
+        // Start the while loop
+        boolean stop = false;
 
+        while (!stop) {
+            System.out.print("Would you like to add and item to your cart? (Y/N) ");
+            String command = scanner.nextLine();
+
+            if (command.equalsIgnoreCase("y")) {
+
+                // Keeps the loop going if they put wrong input
+                while (!stop) {
+                    System.out.print("Type in the item number, to take a product or type in X to exit ");
+                    String item = scanner.nextLine();
+
+                    int number = 0;
+
+                    if (item.equalsIgnoreCase("x")) {
+                        stop = true;
+                    } else {
+                        try {
+                            // Makes the string into an int
+                            number = Integer.parseInt(item);
+                        }
+                        // Catches anything that is not an int or an X
+                        catch (NumberFormatException e) {
+                            System.out.println("\nWrong input\n");
+                        }
+                    }
+
+                    // Adds the cart array
+                    if (number > 0) {
+                        cart.add(inventory.get(number - 1));
+                    }
+                }
+            } else if (command.equalsIgnoreCase("n")) {
+                System.out.println("Thank you for browsing.");
+                stop = true;
+
+            } else {
+                System.out.println("\nSorry wrong input\n");
+            }
+        }
     }
 
     /**
@@ -125,6 +166,12 @@ public class Store {
         //   • compute the total cost
         //   • ask the user whether to check out (C) or return (X)
         //   • if C, call checkOut(cart, totalAmount, scanner)
+
+        int itemNumber = 0;
+        for (Product product : cart) {
+            itemNumber++;
+            System.out.println("Item number: " + itemNumber + "\n----------------\n" + product);
+        }
     }
 
     /**

@@ -1,7 +1,14 @@
 
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -58,6 +65,34 @@ public class Store {
     public static void loadInventory(String fileName, ArrayList<Product> inventory) {
         // TODO: read each line, split on "|",
         //       create a Product object, and add it to the inventory list
+
+        // Start try and catch
+        try {
+            // Read the file
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+
+            // Start while loop, line is reading each line with bufferReader and will stop when no more lines to read
+            while ((line = bufferedReader.readLine()) != null) {
+
+                // Start an array called tokens to split the file from |, then store them in tokens
+                List<String> tokens = new ArrayList<>(Arrays.asList(line.split("\\|")));
+
+                //Variables to store each token that is split
+                String id = tokens.get(0);
+                String name = tokens.get(1);
+                double price = Double.parseDouble(tokens.get(2));
+
+                // Adding to the array inventory, by putting in my tokens into the Class Product
+                inventory.add(new Product(id, name, price));
+
+            }
+
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     /**
@@ -69,6 +104,15 @@ public class Store {
                                        Scanner scanner) {
         // TODO: show each product (id, name, price),
         //       prompt for an id, find that product, add to cart
+        int i = 0;
+
+        // Start a loop to print out each object in inventory
+        for (Product product : inventory) {
+            i++;
+            System.out.println("Item number: " + i + "\n----------------\n" + product);
+        }
+
+
     }
 
     /**

@@ -168,9 +168,21 @@ public class Store {
         //   • if C, call checkOut(cart, totalAmount, scanner)
 
         int itemNumber = 0;
+        double totalAmount = 0;
         for (Product product : cart) {
             itemNumber++;
             System.out.println("Item number: " + itemNumber + "\n----------------\n" + product);
+           totalAmount += product.getPrice();
+        }
+
+        System.out.println("Would you like to check out (C) or return (X): ");
+        String choice = scanner.nextLine();
+
+        if (choice.equalsIgnoreCase("c")) {
+            checkOut(cart, totalAmount, scanner);
+
+        } else if (choice.equalsIgnoreCase("x")) {
+
         }
     }
 
@@ -185,6 +197,10 @@ public class Store {
                                 double totalAmount,
                                 Scanner scanner) {
         // TODO: implement steps listed above
+        System.out.println("Are you sure you want to checkout? " + totalAmount);
+        String choice = scanner.nextLine();
+
+
     }
 
     /**
@@ -194,6 +210,7 @@ public class Store {
      */
     public static Product findProductById(String id, ArrayList<Product> inventory) {
         // TODO: loop over the list and compare ids
+
         return null;
     }
 }

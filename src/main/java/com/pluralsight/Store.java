@@ -197,9 +197,37 @@ public class Store {
                                 double totalAmount,
                                 Scanner scanner) {
         // TODO: implement steps listed above
-        System.out.println("Are you sure you want to checkout? " + totalAmount);
+        System.out.println("Are you sure you want to checkout? (Y/N) " + totalAmount);
         String choice = scanner.nextLine();
+        boolean runningLoop = false;
+        while (!runningLoop)
+        if (choice.equalsIgnoreCase("y")) {
+            System.out.println("Please put in the amount you will be paying today!");
+            double money = scanner.nextDouble();
+            scanner.nextLine();
 
+            boolean run = false;
+
+            while (!run) {
+                if (money == totalAmount) {
+                    System.out.println("Exact Amount!");
+                    runningLoop = true;
+                    run = true;
+                } else if (money > totalAmount) {
+                    double change = money - totalAmount;
+                    System.out.println("Your Change will be " + change);
+                    runningLoop = true;
+                    run = true;
+                } else if (money < totalAmount) {
+                    System.out.println("insufficient Amount.");
+                    break;
+                }
+            }
+
+        } else if (choice.equalsIgnoreCase("n")) {
+            System.out.println("Thank you for browsing!");
+            runningLoop = true;
+        }
 
     }
 

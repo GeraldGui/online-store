@@ -175,14 +175,19 @@ public class Store {
            totalAmount += product.getPrice();
         }
 
-        System.out.println("Would you like to check out (C) or return (X): ");
-        String choice = scanner.nextLine();
+        boolean running = false;
 
-        if (choice.equalsIgnoreCase("c")) {
-            checkOut(cart, totalAmount, scanner);
+        while (!running) {
+            System.out.println("Would you like to check out (C) or return (X): ");
+            String choice = scanner.nextLine();
 
-        } else if (choice.equalsIgnoreCase("x")) {
+            if (choice.equalsIgnoreCase("c")) {
+                checkOut(cart, totalAmount, scanner);
+                running = true;
 
+            } else if (choice.equalsIgnoreCase("x")) {
+                running = true;
+            }
         }
     }
 
@@ -197,38 +202,42 @@ public class Store {
                                 double totalAmount,
                                 Scanner scanner) {
         // TODO: implement steps listed above
-        System.out.println("Are you sure you want to checkout? (Y/N) " + totalAmount);
-        String choice = scanner.nextLine();
+
         boolean runningLoop = false;
-        while (!runningLoop)
-        if (choice.equalsIgnoreCase("y")) {
-            System.out.println("Please put in the amount you will be paying today!");
-            double money = scanner.nextDouble();
-            scanner.nextLine();
 
-            boolean run = false;
+        while (!runningLoop) {
+            System.out.println("Are you sure you want to checkout? (Y/N) " + totalAmount);
+            String choice = scanner.nextLine();
 
-            while (!run) {
-                if (money == totalAmount) {
-                    System.out.println("Exact Amount!");
-                    runningLoop = true;
-                    run = true;
-                } else if (money > totalAmount) {
-                    double change = money - totalAmount;
-                    System.out.println("Your Change will be " + change);
-                    runningLoop = true;
-                    run = true;
-                } else if (money < totalAmount) {
-                    System.out.println("insufficient Amount.");
-                    break;
+            if (choice.equalsIgnoreCase("y")) {
+                System.out.println("Please put in the amount you will be paying today!");
+                double money = scanner.nextDouble();
+                scanner.nextLine();
+
+                boolean run = false;
+
+                while (!run) {
+                    if (money == totalAmount) {
+                        System.out.println("Exact Amount!");
+                        runningLoop = true;
+                        run = true;
+                    } else if (money > totalAmount) {
+                        double change = money - totalAmount;
+                        System.out.println("Your Change will be " + change);
+                        runningLoop = true;
+                        run = true;
+                    } else if (money < totalAmount) {
+                        System.out.println("insufficient Amount.");
+                        break;
+                    }
                 }
+
+            } else if (choice.equalsIgnoreCase("n")) {
+                System.out.println("Thank you for browsing!");
+                runningLoop = true;
             }
 
-        } else if (choice.equalsIgnoreCase("n")) {
-            System.out.println("Thank you for browsing!");
-            runningLoop = true;
         }
-
     }
 
     /**

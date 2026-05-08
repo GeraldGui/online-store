@@ -6,10 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Starter code for the Online Store workshop.
@@ -126,7 +123,7 @@ public class Store {
         boolean stop = false;
 
         while (!stop) {
-            System.out.print("\nWould you like to add a item to your cart? (Y/N)");
+            System.out.print("\nWould you like to add a item to your cart? (Y/N) ");
             String command = scanner.nextLine();
 
             if (command.equalsIgnoreCase("y")) {
@@ -177,12 +174,13 @@ public class Store {
         //   • ask the user whether to check out (C) or return (X)
         //   • if C, call checkOut(cart, totalAmount, scanner)
 
-        int itemNumber = 0;
         double totalAmount = 0;
-        for (Product product : cart) {
-            itemNumber++;
-            System.out.println("Item number: " + itemNumber + "\n----------------\n" + product);
-           totalAmount += product.getPrice();
+        for (int i = 0; i < cart.size(); i++) {
+            if (cart.indexOf(cart.get(i)) == i) {
+                int quantity = Collections.frequency(cart, cart.get(i));
+                totalAmount += cart.get(i).getPrice() * quantity;
+                System.out.println("Quantity: " + quantity + "\n----------------\n" + cart.get(i));
+            }
         }
 
         boolean running = false;

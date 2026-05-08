@@ -1,0 +1,25 @@
+Item 1 | Quantity: 6
+----------------
+Product: PW1431
+name: Wireless Charger iPhone 
+price: 12.99
+
+Item 7 | Quantity: 3
+----------------
+Product: AV1051
+name: JBL Bluetooth Speaker 
+price: 89.95
+
+Item 10 | Quantity: 1
+----------------
+Product: AV1412
+name: XLR Podcast Cardiod Mic 
+price: 44.99
+
+Item 11 | Quantity: 1
+----------------
+Product: AV1312
+name: Mini 1000 Lumens Projector 
+price: 149.95
+
+Total: 542.73

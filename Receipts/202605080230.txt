@@ -1,0 +1,25 @@
+Wireless Charger iPhone | Quantity: 4
+----------------
+Product: PW1431
+name: Wireless Charger iPhone 
+price: 12.99
+
+JBL Bluetooth Speaker | Quantity: 3
+----------------
+Product: AV1051
+name: JBL Bluetooth Speaker 
+price: 89.95
+
+Mini 1000 Lumens Projector | Quantity: 1
+----------------
+Product: AV1312
+name: Mini 1000 Lumens Projector 
+price: 149.95
+
+Telestrations Board Game | Quantity: 3
+----------------
+Product: GM1032
+name: Telestrations Board Game 
+price: 17.99
+
+Total: 525.73

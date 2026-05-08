@@ -1,17 +1,13 @@
 
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-/**
- * Starter code for the Online Store workshop.
- * Students will complete the TODO sections to make the program work.
- */
+
 public class Store {
 
     public static void main(String[] args) {
@@ -51,14 +47,7 @@ public class Store {
         scanner.close();
     }
 
-    /**
-     * Reads product data from a file and populates the inventory list.
-     * File format (pipe-delimited):
-     * id|name|price
-     * <p>
-     * Example line:
-     * A17|Wireless Mouse|19.99
-     */
+
     public static void loadInventory(String fileName, ArrayList<Product> inventory) {
         // TODO: read each line, split on "|",
         //       create a Product object, and add it to the inventory list
@@ -92,15 +81,11 @@ public class Store {
         }
     }
 
-    /**
-     * Displays all products and lets the user add one to the cart.
-     * Typing X returns to the main menu.
-     */
+
     public static void displayProducts(ArrayList<Product> inventory,
                                        ArrayList<Product> cart,
                                        Scanner scanner) {
-        // TODO: show each product (id, name, price),
-        //       prompt for an id, find that product, add to cart
+
         int itemNumber = 0;
 
         System.out.print("Would you like to search by ID? (Y/N) ");
@@ -163,16 +148,7 @@ public class Store {
         }
     }
 
-    /**
-     * Shows the contents of the cart, calculates the total,
-     * and offers the option to check out.
-     */
     public static void displayCart(ArrayList<Product> cart, Scanner scanner) {
-        // TODO:
-        //   • list each product in the cart
-        //   • compute the total cost
-        //   • ask the user whether to check out (C) or return (X)
-        //   • if C, call checkOut(cart, totalAmount, scanner)
 
         double totalAmount = 0;
         for (int i = 0; i < cart.size(); i++) {
@@ -186,7 +162,7 @@ public class Store {
         boolean running = false;
 
         while (!running) {
-            System.out.println("Would you like to check out (C) or return (X): ");
+            System.out.print("Would you like to check out (C) or return (X): ");
             String choice = scanner.nextLine();
 
             if (choice.equalsIgnoreCase("c")) {
@@ -199,26 +175,19 @@ public class Store {
         }
     }
 
-    /**
-     * Handles the checkout process:
-     * 1. Confirm that the user wants to buy.
-     * 2. Accept payment and calculate change.
-     * 3. Display a simple receipt.
-     * 4. Clear the cart.
-     */
+
     public static void checkOut(ArrayList<Product> cart,
                                 double totalAmount,
                                 Scanner scanner) {
-        // TODO: implement steps listed above
 
         boolean runningLoop = false;
 
         while (!runningLoop) {
-            System.out.println("Are you sure you want to checkout? (Y/N) " + totalAmount);
+            System.out.print("Are you sure you want to checkout? (Y/N) " + totalAmount + ":");
             String choice = scanner.nextLine();
 
             if (choice.equalsIgnoreCase("y")) {
-                System.out.println("Please put in the amount you will be paying today!");
+                System.out.print("Please put in the amount you will be paying today: ");
                 double money = scanner.nextDouble();
                 scanner.nextLine();
 
@@ -227,11 +196,13 @@ public class Store {
                 while (!run) {
                     if (money == totalAmount) {
                         System.out.println("Exact Amount!");
+                        createReceipt(cart, totalAmount);
                         runningLoop = true;
                         run = true;
                     } else if (money > totalAmount) {
                         double change = money - totalAmount;
                         System.out.println("Your Change will be " + change);
+                        createReceipt(cart, totalAmount);
                         runningLoop = true;
                         run = true;
                     } else if (money < totalAmount) {
@@ -248,13 +219,7 @@ public class Store {
         }
     }
 
-    /**
-     * Searches a list for a product by its id.
-     *
-     * @return the matching Product, or null if not found
-     */
     public static Product findProductById(String id, ArrayList<Product> inventory) {
-        // TODO: loop over the list and compare ids
         int itemNumber = 1;
 
         for (Product product : inventory) {
@@ -264,6 +229,33 @@ public class Store {
             itemNumber++;
         }
         return null;
+    }
+
+    public static void createReceipt(ArrayList<Product> cart, double totalAmount) {
+        try {
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
+            String fileName = now.format(formatter);
+
+            File createFolder = new File("Receipts");
+            createFolder.mkdir();
+
+            PrintWriter writer = new PrintWriter("Receipts/" + fileName + ".txt");
+
+            for (int i = 0; i < cart.size(); i++) {
+                if (cart.indexOf(cart.get(i)) == i) {
+                    int quantity = Collections.frequency(cart, cart.get(i));
+                    System.out.println(cart.get(i).getName() + " | Quantity: " + quantity + "\n----------------\n" + cart.get(i));
+                    writer.println(cart.get(i).getName() + " | Quantity: " + quantity + "\n----------------\n" + cart.get(i));
+                }
+            }
+
+            System.out.println("Total: " + totalAmount);
+            writer.println("Total: " + totalAmount);
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Error creating receipt!");
+        }
     }
 }
 

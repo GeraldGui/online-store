@@ -106,17 +106,27 @@ public class Store {
         //       prompt for an id, find that product, add to cart
         int itemNumber = 0;
 
-        // Start a loop to print out each object in inventory
-        for (Product product : inventory) {
-            itemNumber++;
-            System.out.println("Item number: " + itemNumber + "\n----------------\n" + product);
+        System.out.print("Would you like to search by ID? (Y/N) ");
+        String idSearch = scanner.nextLine();
+
+        if (idSearch.equalsIgnoreCase("y")) {
+            System.out.print("What is the product ID you would like to search: ");
+            String id = scanner.nextLine();
+
+            findProductById(id, inventory);
+        } else if (idSearch.equalsIgnoreCase("n")) {
+            // Start a loop to print out each object in inventory
+            for (Product product : inventory) {
+                itemNumber++;
+                System.out.println("Item number: " + itemNumber + "\n----------------\n" + product);
+            }
         }
 
         // Start the while loop
         boolean stop = false;
 
         while (!stop) {
-            System.out.print("Would you like to add and item to your cart? (Y/N) ");
+            System.out.print("\nWould you like to add a item to your cart? (Y/N)");
             String command = scanner.nextLine();
 
             if (command.equalsIgnoreCase("y")) {
@@ -247,7 +257,14 @@ public class Store {
      */
     public static Product findProductById(String id, ArrayList<Product> inventory) {
         // TODO: loop over the list and compare ids
+        int itemNumber = 1;
 
+        for (Product product : inventory) {
+            if (id.equalsIgnoreCase(product.getId())) {
+                System.out.println("\nItem number: " + itemNumber + "\n----------------\n" + product);
+            }
+            itemNumber++;
+        }
         return null;
     }
 }

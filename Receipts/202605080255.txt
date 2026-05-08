@@ -1,0 +1,19 @@
+Desktop PC Computer Intel Core i5 | Quantity: 3
+----------------
+Product: CP2012
+name: Desktop PC Computer Intel Core i5 
+price: 139.0
+
+USB C to A Cable | Quantity: 3
+----------------
+Product: PW1255
+name: USB C to A Cable 
+price: 13.95
+
+JBL Bluetooth Speaker | Quantity: 1
+----------------
+Product: AV1051
+name: JBL Bluetooth Speaker 
+price: 89.95
+
+Total: 548.8000000000001

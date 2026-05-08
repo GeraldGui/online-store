@@ -1,16 +1,21 @@
-# Project Title
+# Online Store
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
-
+This is a Java console application that simulates an online store shopping experience. It is intended for customers 
+who want to browse products, manage a shopping cart, and complete a purchase. The application allows users to view available 
+products, search by product ID, add items to their cart, and checkout with payment processing. It aims to solve the problem 
+of providing a simple and interactive shopping experience directly from the terminal, while also generating a receipt file 
+saved locally for record keeping.
 ## User Stories
 
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
-
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
-
+- As a customer I would like to see all my products to decide what to buy at the end
+- As a customer I want to add products to my cart so I can look at them later
+- As a customer I want to be able to see my cart so I can decide what to buy at checkout
+- As a customer I want to be able to check out my items to go home with them
+- As a Customer I would like to search up an item by ID to find my product faster
+- As a customer I want to be able to add my items to cart but not one at a time I want them to add together to see it together
+- As a customer I would like to see my receipt to see what I bought
 ## Setup
 
 Instructions on how to set up and run the project using IntelliJ IDEA.
@@ -32,38 +37,32 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Java: corretto-17 Amazon Corretto 17.0.18
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
-
-![Application Screenshot](path/to/your/screenshot.png)
+![Demo.gif](Demo.gif)
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
-
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Search improvements — Allow users to search by product name or price range, not just by ID
+- Save cart — Allow users to save their cart and come back to it later
+- Better receipt formatting — Improve the receipt layout with a header, store name, and cleaner spacing
 
 ## Resources
 
 List resources such as tutorials, articles, or documentation that helped you during the project.
 
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+- [GitHub Resource](https://github.com/RayMaroun/yearup-spring-section-8-2026)
+- [Java Visual](https://raymaroun.github.io/yearup-java-visuals/)
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- **Gerald** - Owner
 
 ## Thanks
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+- Thank you to Raymond for continuous support and guidance.
  

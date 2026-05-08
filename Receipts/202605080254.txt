@@ -1,0 +1,7 @@
+USB C to A Cable | Quantity: 3
+----------------
+Product: PW1255
+name: USB C to A Cable 
+price: 13.95
+
+Total: 41.849999999999994

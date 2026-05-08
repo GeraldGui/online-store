@@ -1,0 +1,19 @@
+Desktop PC Computer Intel Core i5 | Quantity: 3
+----------------
+Product: CP2012
+name: Desktop PC Computer Intel Core i5 
+price: 139.0
+
+Battleship Board Game | Quantity: 2
+----------------
+Product: GM1075
+name: Battleship Board Game 
+price: 12.99
+
+Wireless Charger iPhone | Quantity: 2
+----------------
+Product: PW1431
+name: Wireless Charger iPhone 
+price: 12.99
+
+Total: 468.96000000000004

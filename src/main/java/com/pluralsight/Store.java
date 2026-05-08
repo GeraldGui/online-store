@@ -92,17 +92,25 @@ public class Store {
         String idSearch = scanner.nextLine();
 
         if (idSearch.equalsIgnoreCase("y")) {
-            System.out.print("What is the product ID you would like to search: ");
-            String id = scanner.nextLine();
+            Product found = null;
 
-            findProductById(id, inventory);
-        } else if (idSearch.equalsIgnoreCase("n")) {
-            // Start a loop to print out each object in inventory
-            for (Product product : inventory) {
-                itemNumber++;
-                System.out.println("Item number: " + itemNumber + "\n----------------\n" + product);
+            while (found == null) {
+                System.out.print("What is the product ID you would like to search: ");
+                String id = scanner.nextLine();
+
+                found = findProductById(id, inventory);
+
+                if (found == null) {
+                    System.out.println("Invalid ID, please try again.");
+                }
             }
-        }
+            } else if (idSearch.equalsIgnoreCase("n")) {
+                // Start a loop to print out each object in inventory
+                for (Product product : inventory) {
+                    itemNumber++;
+                    System.out.println("Item number: " + itemNumber + "\n----------------\n" + product);
+                }
+            }
 
         // Start the while loop
         boolean stop = false;
@@ -183,7 +191,7 @@ public class Store {
         boolean runningLoop = false;
 
         while (!runningLoop) {
-            System.out.print("Are you sure you want to checkout? (Y/N) " + totalAmount + ":");
+            System.out.print("Are you sure you want to checkout? (Y/N) " + totalAmount + ": ");
             String choice = scanner.nextLine();
 
             if (choice.equalsIgnoreCase("y")) {
@@ -195,13 +203,13 @@ public class Store {
 
                 while (!run) {
                     if (money == totalAmount) {
-                        System.out.println("Exact Amount!");
+                        System.out.println("Exact Amount!\n");
                         createReceipt(cart, totalAmount);
                         runningLoop = true;
                         run = true;
                     } else if (money > totalAmount) {
                         double change = money - totalAmount;
-                        System.out.println("Your Change will be " + change);
+                        System.out.println("Your Change will be " + change + "\n");
                         createReceipt(cart, totalAmount);
                         runningLoop = true;
                         run = true;
@@ -225,6 +233,7 @@ public class Store {
         for (Product product : inventory) {
             if (id.equalsIgnoreCase(product.getId())) {
                 System.out.println("\nItem number: " + itemNumber + "\n----------------\n" + product);
+                return product;
             }
             itemNumber++;
         }
@@ -241,6 +250,7 @@ public class Store {
             createFolder.mkdir();
 
             PrintWriter writer = new PrintWriter("Receipts/" + fileName + ".txt");
+            System.out.println("\n\n==========Receipt==========\n");
 
             for (int i = 0; i < cart.size(); i++) {
                 if (cart.indexOf(cart.get(i)) == i) {
